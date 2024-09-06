@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte à rebours</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            display: flex;
+            max-width: 800px;
+            margin:auto;
+            align-items: center;
+            height:100vh;
+        }
+        h1 {
+            color: #333;
+        }
+        #countdown {
+            font-size: 2em;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h1>La plateforme Brignoles - Stage DWWM session 2024</h1>
+    <p>Avant de commencer votre stage de fin d'étude il vous reste exactement :</p>
+    <div id="countdown">Chargement...</div>
+</section>
+
+<script>
+    // Définir la date cible pour le décompte
+    var targetDate = new Date("December 15, 2024 23:59:59").getTime();
+
+    // Mettre à jour le compte à rebours toutes les 1 seconde
+    var countdownFunction = setInterval(function() {
+
+        // Obtenir la date et l'heure actuelles
+        var now = new Date().getTime();
+
+        // Calculer la différence de temps entre maintenant et la date cible
+        var timeRemaining = targetDate - now;
+
+        // Calculer les jours, heures, minutes et secondes restants
+        var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        // Afficher le résultat dans l'élément avec l'id="countdown"
+        document.getElementById("countdown").innerHTML = days + " jours " + hours + " heures "
+        + minutes + " minutes " + seconds + " secondes ";
+
+        // Si le compte à rebours est terminé, afficher un message
+        if (timeRemaining < 0) {
+            clearInterval(countdownFunction);
+            document.getElementById("countdown").innerHTML = "Le compte à rebours est terminé";
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
